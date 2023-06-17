@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:location_class/screen/view/home_screen.dart';
+import 'package:location_class/screen/view/map_screen.dart';
 void main()
 {
   runApp(
-    MaterialApp(
+    GetMaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        '/':(context) =>HomeScreen(),
+        "/":(p0) => MapScreen(),
       },
     )
   );

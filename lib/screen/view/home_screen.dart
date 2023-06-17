@@ -16,16 +16,27 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           
           ElevatedButton(onPressed: () async {
-            var  status= await Permission.storage.status;
+            var  status= await Permission.location.status;
             if (status.isDenied)
               {
-                await Permission.storage.request();
+                await Permission.location.request();
               }
             else
               {
-                Text('Get Permission');
+                print('Get Permission');
               }
-          }, child: Text('permission take '))
+          }, child: Text('permission take ')),
+
+      ElevatedButton(
+        onPressed: () async {
+          Map<Permission, PermissionStatus> statuses = await [
+            Permission.location,
+            Permission.storage,
+            Permission.camera,
+          ].request();
+        },
+        child: Text("MultiPermission"),
+      )
         ],
         
       ),
