@@ -11,14 +11,18 @@ class LocationController extends GetxController {
   Future<void> getlat() async {
     LocationPermission locationPermission =
         await Geolocator.requestPermission();
+
     Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
     lat.value = position.latitude;
     long.value = position.longitude;
-    googleMapController
-        ?.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
-      target: LatLng(lat.value, long.value),
-      zoom: 11,
-    )));
+    googleMapController?.animateCamera(
+      CameraUpdate.newCameraPosition(
+        CameraPosition(
+          target: LatLng(lat.value, long.value),
+          zoom: 100,
+        ),
+      ),
+    );
   }
 }

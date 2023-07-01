@@ -11,35 +11,39 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(
-      body: Column(
-        children: [
-          
-          ElevatedButton(onPressed: () async {
-            var  status= await Permission.location.status;
-            if (status.isDenied)
-              {
-                await Permission.location.request();
-              }
-            else
-              {
-                print('Get Permission');
-              }
-          }, child: Text('permission take ')),
-
-      ElevatedButton(
-        onPressed: () async {
-          Map<Permission, PermissionStatus> statuses = await [
-            Permission.location,
-            Permission.storage,
-            Permission.camera,
-          ].request();
-        },
-        child: Text("MultiPermission"),
-      )
-        ],
-        
+    return SafeArea(
+      child: Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                  onPressed: () async {
+                    var status = await Permission.location.status;
+                    if (status.isDenied) {
+                      await Permission.location.request();
+                    } else {
+                      print('Get Permission');
+                    }
+                  },
+                  child: Text('permission take ')),
+              SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  Map<Permission, PermissionStatus> statuses = await [
+                    Permission.location,
+                    Permission.storage,
+                    Permission.camera,
+                  ].request();
+                },
+                child: Text("MultiPermission"),
+              )
+            ],
+          ),
+        ),
       ),
-    ),);
+    );
   }
 }

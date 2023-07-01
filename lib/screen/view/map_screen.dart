@@ -26,6 +26,7 @@ class _MapScreenState extends State<MapScreen> {
         ),
         appBar: AppBar(
           title: Text('map'),
+          centerTitle: true,
         ),
         body: Obx(
           () => GoogleMap(
@@ -42,10 +43,10 @@ class _MapScreenState extends State<MapScreen> {
                   markerId: MarkerId('id 1'),
                   position: LatLng(locationController.lat.value,
                       locationController.long.value),
-                  draggable: false,
+                  draggable: true,
                   infoWindow: InfoWindow(title: 'Dixit'))
             },
-            mapType: MapType.satellite,
+            mapType: MapType.hybrid,
           ),
         ),
       ),
