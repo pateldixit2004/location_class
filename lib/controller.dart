@@ -15,7 +15,10 @@ class LocationController extends GetxController {
         desiredAccuracy: LocationAccuracy.high);
     lat.value = position.latitude;
     long.value = position.longitude;
-    googleMapController?.animateCamera(CameraUpdate.newCameraPosition(
-        CameraPosition(target: LatLng(lat.value, long.value),zoom: 11,)));
+    googleMapController
+        ?.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
+      target: LatLng(lat.value, long.value),
+      zoom: 11,
+    )));
   }
 }

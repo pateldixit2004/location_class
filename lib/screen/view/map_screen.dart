@@ -13,35 +13,39 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   LocationController locationController = Get.put(LocationController());
-  `
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        floatingActionButton: FloatingActionButton(onPressed: () async{
-          locationController.getlat();
-        },),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            locationController.getlat();
+          },
+          child: Icon(Icons.my_location_rounded,),
+        ),
         appBar: AppBar(
           title: Text('map'),
         ),
         body: Obx(
-          () =>  GoogleMap(
+          () => GoogleMap(
             zoomControlsEnabled: false,
             onMapCreated: (controller) {
-              locationController.googleMapController=controller;
+              locationController.googleMapController = controller;
             },
             initialCameraPosition: CameraPosition(
-                target: LatLng(
-                    locationController.lat.value, locationController.long.value),
+                target: LatLng(locationController.lat.value,
+                    locationController.long.value),
                 zoom: 5),
             markers: {
               Marker(
                   markerId: MarkerId('id 1'),
                   position: LatLng(locationController.lat.value,
                       locationController.long.value),
-              draggable: false,infoWindow: InfoWindow(title: 'Dixit'))
+                  draggable: false,
+                  infoWindow: InfoWindow(title: 'Dixit'))
             },
-            mapType: locationController.map.value,
+            mapType: MapType.satellite,
           ),
         ),
       ),
